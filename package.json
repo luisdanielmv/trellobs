@@ -1,0 +1,22 @@
+{
+  "name": "trellobs",
+  "version": "1.0.0",
+  "description": "Trello Clone React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisdanielmv/trellobs.git"
+  },
+  "author": "Daniel Morales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luisdanielmv/trellobs/issues"
+  },
+  "homepage": "https://github.com/luisdanielmv/trellobs#readme",
+  "devDependencies": {
+    "webpack": "^2.6.1"
+  }
+}
