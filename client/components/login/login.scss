@@ -1,0 +1,102 @@
+
+.login {
+    background-color: white;
+    height: 100vh;
+    
+    .login__wrapper {
+        height: 100%;
+        margin: 0 3.8125rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .login__logo {
+            height: 2.5625rem;
+            width: 8.9375rem;
+        }
+
+        form.login__form {
+            margin-top: 8.75rem;
+
+            .form-control {
+                border-radius: 8px;
+                height: 2.8125rem;
+                padding-left: 3rem;
+            }
+
+            .form-group:nth-child(n+2), button.btn.btn-primary {
+                margin-top: 1.875rem;
+            }
+
+            button.btn.btn-primary {
+                background-color: #4e88ff;
+                box-shadow: -0.5rem 0.8125rem 1.3125rem rgba(10, 51, 137, 0.27);
+                border-radius: 8px;
+                font-weight: 600;
+                height: 3.125rem;
+                width: 100%;
+            }
+        }
+
+        .login__or {
+            margin-top: 3.813rem;
+            font-size: 1.25rem;
+            span {
+                color: #82868b;
+                display: block;
+                text-align: center;
+            }
+
+            span:before, span:after {
+                border-bottom: 1px solid #dadada;
+                content:'';
+                margin-top: 0.6em;
+                width: 42%;
+                z-index: -1;
+            }
+
+            span:before {
+                float: left;
+            }
+
+            span:after {
+                float: right;
+            }
+
+            .or_container {
+                position: relative;
+            }
+        }
+
+        .login__createNew{
+            display: flex;
+            justify-content: center;
+            margin-top: 3.813rem;
+            a {
+                font-size: 1.25rem;
+                color: #4e88ff;
+                font-weight: 600;
+            }
+        }
+    }
+}
+
+.form-group figure {
+    opacity: .25;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    margin: .8rem 0 0 1rem ;
+}
+
+.potato {
+    height: 100vh;
+
+    .login__filler {
+        background: url('img/login-bg2.jpg') no-repeat;
+        background-size:  100% 100vh;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+}

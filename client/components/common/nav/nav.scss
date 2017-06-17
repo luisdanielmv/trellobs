@@ -1,0 +1,25 @@
+.navbar.navbar-default {
+    background-color: #FFF;
+    padding: 0.625rem 3.75rem;
+    position: fixed;
+    width: 100vw;
+    
+}
+
+.navbar-brand {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+}
+.navbar-toggle {
+    z-index:3;
+}
+
+.nav__logo {
+    height: 1.25rem;
+    width: 4.4375rem;
+}
