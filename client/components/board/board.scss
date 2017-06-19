@@ -1,0 +1,50 @@
+.board__wrapper {
+    width: 100vw;
+    height: calc(100vh - 4.5rem);
+    margin-top: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3.75rem;
+    
+    .board__header {
+        h1 {
+            padding: 0;
+            margin: 1.6875rem 0 0 0;
+            top: 4.5rem;
+        }
+    }
+
+    .board__main {
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-grow: 1;
+        display: flex;
+        padding-bottom: 0.625rem;
+        margin-bottom: 1.8125rem;
+    }
+
+    .board__main::-webkit-scrollbar-track
+    {
+        border-radius: 5px;
+        background-color: #FFFFFF;
+    }
+
+    .board__main::-webkit-scrollbar
+    {
+        background-color: #FFFFFF;
+        height: 0.625rem;
+    }
+
+    .board__main::-webkit-scrollbar-thumb
+    {
+        border-radius: 5px;
+        background-color: #b1b7c4;
+    }
+
+    .board__main::-webkit-scrollbar-thumb:hover
+    {
+        background-color: #3f3f3f;
+        border-radius: 5px;
+        
+    }
+}

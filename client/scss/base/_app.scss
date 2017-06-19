@@ -3,5 +3,28 @@ html {
 }
 
 body {
-    background-color: #3C3B3F;
+    background-color: #f5f8ff;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+.flex-row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.flex__center {
+    justify-content: center;
+}
+
+.flex__space-between {
+    justify-content: space-between;
+}
+
+.flex__end {
+    justify-content: flex-end;
 }

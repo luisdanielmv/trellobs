@@ -1,0 +1,103 @@
+div.list {
+    align-items: flex-start;
+    box-shadow: 0 0 18px rgba(10, 23, 48, 0.10);
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;   
+    margin-right: 1.3125rem;
+    margin-top: 1.6875rem;
+    padding: 1.9375rem 0 1.9375rem 1.25rem;
+    min-width: 17.125rem;
+    width: 17.125rem;
+
+    h2 {
+        margin: 0;
+    }
+
+    .list__card-holder {
+        overflow-y: auto;
+        padding-right: 0.5rem;
+        margin-top: 1.25rem;
+    }
+
+    .list__btn {
+        align-items: center;
+        background-color: #FFFFFF;
+        border: none;
+        display: flex;
+        margin-top: 1.875rem;
+        // padding: 1.875rem 0;
+        outline: none;
+
+        span {
+            color: #3f3f3f;
+            font-size: 0.75rem;
+            margin-left: 0.625rem;
+        }
+    }
+
+    .list__icon {
+        height: 1.25rem;
+        width: 1.25rem;
+    }
+
+    .card {
+        background-color: #ffffff;
+        border: 1px solid #e6e6e6;
+        height: 113px;
+        margin: 0 auto 1.25rem;
+        padding: 1.25rem;
+        width: 232px;
+
+        .details {
+            align-items: center;
+            margin-top: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                font-size: 0.6875rem;
+            }
+
+            .card__members {
+                display: flex;
+
+                .card__members--item {
+                    align-items: center;
+                    background-color: #f6b12c;
+                    display: flex;
+                    font-size: 0.625rem;
+                    height: 1.5rem;
+                    justify-content: center;
+                    margin: 0 0 0 0.625rem;
+                    width: 1.5rem;
+                }
+            }
+        }
+    }
+}
+
+.list__card-holder::-webkit-scrollbar-track
+{
+	border-radius: 3px;
+	background-color: #FFFFFF;
+}
+
+.list__card-holder::-webkit-scrollbar
+{
+	background-color: #FFFFFF;
+    width: 0.375rem;
+}
+
+.list__card-holder::-webkit-scrollbar-thumb
+{
+	border-radius: 3px;
+	background-color: #e6e6e6;
+}
+
+.list__card-holder::-webkit-scrollbar-thumb:hover
+{
+	background-color: #b1b7c4;
+    border-radius: 3px;
+	
+}
