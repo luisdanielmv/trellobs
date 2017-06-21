@@ -1,9 +1,29 @@
 // Users Controller
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+
+const Validator = require('validator');
+const isEmpty = require('lodash/isEmpty');
+
 let mongoose = require('mongoose');
 let Users = require('./../models/user');
 
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
+
+const validateInput = (data) => {
+    let errors = {};
+
+    if (Validator.isEmpty(data.username)) {
+        errors.username = 'This field is required';
+    }
+    if (Validator.isEmpty(data.password)) {
+        errors.password = 'This field is required';
+    }
+
+    return {
+        errors,
+        isValid: isEmpty(errors)
+    }
+}
 
 const respond = (res, status, json) => {
     res.status(status);
@@ -15,10 +35,6 @@ let get = (req, res) => {
         if (err) {
             respond(res, 404, err);
         } else {
-            let fuck = 'fuck';
-            let token = jwt.sign({fuck}, 'fuck');
-            console.log('tokenmon:' + token);
-            console.log(jwt.verify(token, 'fuck'));
             respond(res, 200, data);
             console.log(req.query);
         }
@@ -26,14 +42,32 @@ let get = (req, res) => {
 };
 
 let getOne = (req, res) => {
-    Users.findOne({_id: req.params.id}).exec((err, data) => {
-        if (err) {
-            respond(res, 404, err);
-        } else {
-            respond(res, 200, data);
-            console.log(req.query);
-        }
-    });
+    console.log('query: ', req.body);
+
+    const { errors, isValid } = validateInput(req.body);
+
+    if (!isValid) {
+        res.status(422).json(errors);
+        console.log(errors);
+    } else {
+        Users.findOne(req.body).exec((err, data) => {
+            if (err) {
+                respond(res, 404, req);
+            } else {
+                let token = jwt.sign({ _id: data._id }, process.env.SECRET);
+
+                respond(res, 200, {
+                    user: {
+                        _id: data._id,
+                        firstName: data.firstName,
+                        lastName: data.lastName,
+                        username: data.username
+                    },
+                    token
+                });
+            }
+        });
+    }
 };
 
 let add = (req, res) => {
@@ -48,7 +82,8 @@ let add = (req, res) => {
 }
 
 let del = (req, res) => {
-    Users.remove(req.body, (err, data)=> {
+    console.log(req.body);
+    Users.remove(req.body, (err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {
@@ -58,7 +93,7 @@ let del = (req, res) => {
 }
 
 let update = (req, res) => {
-    let conditions = {_id: req.body._id};
+    let conditions = { _id: req.body._id };
     Users.update(conditions, req.body, (err, data) => {
         if (err) {
             respond(res, 404, err);

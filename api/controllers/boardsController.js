@@ -1,4 +1,7 @@
 // Boards Controller
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+
 let mongoose = require('mongoose');
 let Boards = require('./../models/board');
 
@@ -8,12 +11,13 @@ const respond = (res, status, json) => {
 }
 
 let get = (req, res) => {
-    Boards.find(req.query).exec((err, data) => {
+    let userInfo = jwt.verify(req.query.token, process.env.SECRET);
+
+    Boards.find().where('ownerId').equals(userInfo._id).exec((err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {
             respond(res, 200, data);
-            console.log(req.query);
         }
     });
 };

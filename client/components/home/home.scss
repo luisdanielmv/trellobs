@@ -1,7 +1,60 @@
-main.f {
+.home__wrapper {
     height: 100vh;
     margin-top: 4.5rem;
-    min-width: 2000px;
-    overflow: scroll;
-    margin: 0;
+
+    .home__header {
+        h1 {
+            padding: 0;
+            margin: 1.6875rem 0 0 0;
+            top: 4.5rem;
+        }
+    }
+
+    .home__main {
+        overflow-x: auto;
+        overflow-y: hidden;
+        flex-grow: 1;
+        display: flex;
+        padding-bottom: 0.625rem;
+        margin-bottom: 1.8125rem;
+
+        .home__list-holder {
+            display: flex;
+            align-items: flex-start;
+            padding-bottom: 1.625rem;
+        }
+    }
+
+    .home__main::-webkit-scrollbar-track
+    {
+        border-radius: 5px;
+        background-color: #f5f8ff;
+    }
+
+    .home__main::-webkit-scrollbar
+    {
+        background-color: #f5f8ff;
+        height: 0.625rem;
+    }
+
+    .home__main::-webkit-scrollbar-thumb
+    {
+        border-radius: 5px;
+        background-color: #b1b7c4;
+    }
+
+    .home__main::-webkit-scrollbar-thumb:hover
+    {
+        background-color: #3f3f3f;
+        border-radius: 5px;
+        
+    }
+
+    .home__btn {
+        align-items: center;
+        background-color: #f5f8ff;
+        border: none;
+        display: flex;
+        outline: none;
+    }
 }

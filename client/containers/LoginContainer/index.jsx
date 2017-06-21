@@ -1,38 +1,49 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { arrayOf, object, string } from 'prop-types';
+import { func } from 'prop-types';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 import store from '../../redux/store';
+import { loginRequest } from '../../redux/actions/authActions';
 import { Login } from '../../components/';
+
 
 class LoginContainer extends Component {
     constructor ( props ) {
         super( props )
     }
 
-    fuck() {
-        store.dispatch({
-            type: 'potato',
-            action: 'potato'
-        });
+    static propTypes = {
+        loginRequest: func.isRequired
+    }
+
+    authenticate(credentials) {
+        this.props.loginRequest(credentials)
+        .then(
+            () => {
+                this.props.history.push('/home');
+            }, 
+            (error) => {
+                console.log(error);
+            }
+        ).catch((error) => {console.log(error)})
     }
 
     render () {
-        let fuck = this.fuck.bind(this);
+        let authenticate = this.authenticate.bind(this);
+        let {authenticated} = this.props;
         return (
-            <Login 
-                fuck = {fuck}
-            />
+            <Login authenticate = {authenticate}/>
         );
     }
 }
 
 const mapStateToProps = store => {
   return {
-    
+    user: store.user,
+    authenticated: store.authenticated
   };
 };
 
-export default LoginContainer;
-// export default connect(mapStateToProps)(HomeContainer);
+export default connect(mapStateToProps, {loginRequest})(LoginContainer);

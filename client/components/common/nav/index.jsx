@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+
 import './nav.scss';
 import logo from './img/trello.svg';
 import addIcon from './img/add-Icon.svg';
@@ -17,6 +18,8 @@ class Nav extends Component {
   }
 
   render() {
+    let {user} = this.props;
+    console.log(user);
     return (
       <nav className="navbar navbar-default" role="navigation">
         <div className="flex-row">
