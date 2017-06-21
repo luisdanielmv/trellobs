@@ -12,17 +12,14 @@ import uIcon from './img/username.svg';
 import pIcon from './img/password.svg';
 import bgImg from './img/login-bg2.jpg';
 
-require('./login.scss');
+require('./register.scss');
 
-class Login extends Component {
+class Register extends Component {
     constructor(props) {
         super(props)
     }
 
-    
-
     render() {
-        let {fuck} = this.props;
         return (
             <div className='row'>
                 <div className='col-xs-12 col-md-5 login'>
@@ -33,10 +30,20 @@ class Login extends Component {
                             </figure>
                             <form className='login__form'>
                                 <div className="form-group">
-                                    <figure>
-                                        <img src={uIcon} alt='Trello' />
-                                    </figure>
-                                    <input type='text' className='form-control' name='username' placeholder='Username or Email' />
+                                    
+                                    <input type='text' className='form-control' name='firstname' placeholder='First name' />
+                                </div>
+                                <div className="form-group">
+                                    
+                                    <input type='text' className='form-control' name='lastname' placeholder='Last name' />
+                                </div>
+                                <div className="form-group">
+                                    
+                                    <input type='text' className='form-control' name='username' placeholder='Username' />
+                                </div>
+                                <div className="form-group">
+                                    
+                                    <input type='email' className='form-control' name='email' placeholder='Email' />
                                 </div>
                                 <div className="form-group">
                                     <figure>
@@ -44,7 +51,7 @@ class Login extends Component {
                                     </figure>
                                     <input type='password' className='form-control' name='password' placeholder='Password' />
                                 </div>
-                                <button onClick={fuck} className="btn btn-primary" type='button'>LOG IN</button>
+                                <button className="btn btn-primary">LOG IN</button>
                             </form>
                             <div className='login__or'>
                                 <span>OR</span>
@@ -63,4 +70,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Register;

@@ -9,10 +9,10 @@ const passport = require('passport');
 const passportJWT = require('passport-jwt');
 
 // Import Models
-require('./models/note');
+// require('./models/note');
 
 // Import Controllers
-notesAPI = require('./controllers/notesController');
+// notesAPI = require('./controllers/notesController');
 
 const app = express();
 const routes = require('./routes/');

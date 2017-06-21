@@ -4,26 +4,16 @@ import { arrayOf, object, string } from 'prop-types';
 import axios from 'axios';
 
 import store from '../../redux/store';
-import { Login } from '../../components/';
+import { Register } from '../../components/';
 
-class LoginContainer extends Component {
+class RegisterContainer extends Component {
     constructor ( props ) {
         super( props )
     }
 
-    fuck() {
-        store.dispatch({
-            type: 'potato',
-            action: 'potato'
-        });
-    }
-
     render () {
-        let fuck = this.fuck.bind(this);
         return (
-            <Login 
-                fuck = {fuck}
-            />
+            <Register/>
         );
     }
 }
@@ -34,5 +24,5 @@ const mapStateToProps = store => {
   };
 };
 
-export default LoginContainer;
+export default RegisterContainer;
 // export default connect(mapStateToProps)(HomeContainer);

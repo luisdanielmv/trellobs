@@ -14,122 +14,18 @@ class List extends Component {
 
     render() {
         let { list } = this.props;
+        let {cards} = list;
         return (
             <div className="list">
                 <h2>{list.name}</h2>
                 <div className='list__card-holder'>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="card">
-                        <p>Mercedem aut nummos unde unde extricat, amaras</p>
-                        <div className="details">
-                            <span>Jun 25</span>
-                            <div className='card__members'>
-                                <div className='card__members--item'>
-                                    CP
-                            </div>
-                                <div className='card__members--item'>
-                                    RC
-                            </div>
-                            </div>
-                        </div>
-                    </div>
+                    {cards.map((card) => {
+                        return (
+                            <Card
+                                key={card.content}
+                                card={card}
+                            />)
+                    })}
                 </div>
                 <button className='list__btn'>
                     <figure className='list__icon'>

@@ -4,7 +4,7 @@ const app = require('./app.js');
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect(`mongodb://${process.env.DB}`, (err) => {
+mongoose.connect(`${process.env.DB}`, (err) => {
     console.log(process.env.DB);
     if (err) {
         console.log(`Error Potato: ${err}`);

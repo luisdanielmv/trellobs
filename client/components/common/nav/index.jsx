@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import './nav.scss';
 import logo from './img/trello.svg';
 import addIcon from './img/add-Icon.svg';
+import arrowIcon from './img/arrow-Icon.svg';
 import bellIcon from './img/bell-Icon.svg';
 import boardsIcon from './img/board-Icon.svg';
 import importantIcon from './img/important-Icon.svg';
@@ -67,7 +68,12 @@ class Nav extends Component {
             <div className="dropdown username">
               <button className="btn btn-default dropdown-toggle nav__btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <span className='hidden-xs'>Username</span>
-                <span className="caret"></span>
+                <span className="hidden-xs">
+                  <figure className='nav__icon'>
+                    <img src={arrowIcon} alt="Bell Icon" />
+                  </figure>
+                </span>
+                <span className="visible-xs">LD</span>
               </button>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="#">Action</a></li>

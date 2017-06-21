@@ -21,6 +21,12 @@
         display: flex;
         padding-bottom: 0.625rem;
         margin-bottom: 1.8125rem;
+
+        .board__list-holder {
+            display: flex;
+            align-items: flex-start;
+            padding-bottom: 1.625rem;
+        }
     }
 
     .board__main::-webkit-scrollbar-track
@@ -46,5 +52,19 @@
         background-color: #3f3f3f;
         border-radius: 5px;
         
+    }
+
+    .board__btn {
+        align-items: center;
+        background-color: #f5f8ff;
+        border: none;
+        display: flex;
+        outline: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .board__wrapper {
+        padding: 0 1rem;
     }
 }

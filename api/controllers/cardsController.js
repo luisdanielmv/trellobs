@@ -1,9 +1,6 @@
-// Users Controller
+// Cards Controller
 let mongoose = require('mongoose');
-let Users = require('./../models/user');
-
-require('dotenv').config();
-const jwt = require('jsonwebtoken');
+let Cards = require('./../models/card');
 
 const respond = (res, status, json) => {
     res.status(status);
@@ -11,14 +8,10 @@ const respond = (res, status, json) => {
 }
 
 let get = (req, res) => {
-    Users.find(req.query).exec((err, data) => {
+    Cards.find(req.query).exec((err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {
-            let fuck = 'fuck';
-            let token = jwt.sign({fuck}, 'fuck');
-            console.log('tokenmon:' + token);
-            console.log(jwt.verify(token, 'fuck'));
             respond(res, 200, data);
             console.log(req.query);
         }
@@ -26,7 +19,7 @@ let get = (req, res) => {
 };
 
 let getOne = (req, res) => {
-    Users.findOne({_id: req.params.id}).exec((err, data) => {
+    Cards.findOne({_id: req.params.id}).exec((err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {
@@ -37,8 +30,8 @@ let getOne = (req, res) => {
 };
 
 let add = (req, res) => {
-    const newUser = new Users(req.body);
-    newUser.save((err, data) => {
+    const newCard = new Cards(req.body);
+    newCard.save((err, data) => {
         if (err) {
             respond(res, 400, err);
         } else {
@@ -48,7 +41,7 @@ let add = (req, res) => {
 }
 
 let del = (req, res) => {
-    Users.remove(req.body, (err, data)=> {
+    Cards.remove(req.body, (err, data)=> {
         if (err) {
             respond(res, 404, err);
         } else {
@@ -59,7 +52,7 @@ let del = (req, res) => {
 
 let update = (req, res) => {
     let conditions = {_id: req.body._id};
-    Users.update(conditions, req.body, (err, data) => {
+    Cards.update(conditions, req.body, (err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {
@@ -68,8 +61,8 @@ let update = (req, res) => {
     });
 }
 
-let usersController = {
+let cardsController = {
     get, getOne, add, del, update
 }
 
-module.exports = usersController;
+module.exports = cardsController;

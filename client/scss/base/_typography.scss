@@ -1,10 +1,11 @@
+@import '../helpers/variables';
+
 body {
-	color: #444;
 	font-family: 'Helvetica Neue','Times New Roman', Times, serif sans-serif;
 }
 
 h1, h2, h3, p {
-    color: #2c2b2c;
+    color: $font-color;
     font-weight: 600;
 }
 
