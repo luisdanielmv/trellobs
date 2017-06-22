@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import './card.scss';
 
+const moment = require('moment');
+
 class Card extends Component {
     constructor(props) {
         super(props)
@@ -16,7 +18,7 @@ class Card extends Component {
             <div className="card">
                 <p>{card.content}</p>
                 <div className="details">
-                    <span>Jun 25</span>
+                    <span>{moment(card.dueDate).format('MMM DD')}</span>
                     <div className='card__members'>
                         <div className='card__members--item'>CP</div>
                         <div className='card__members--item'>RC</div>

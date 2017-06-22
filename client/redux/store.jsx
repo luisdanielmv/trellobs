@@ -7,7 +7,9 @@ const INITIAL_STATE = {
     auth: {
         error: '', message: '', authenticated: true, user: {}
     },
-    boards: []
+    boards: {list: [], activeBoardId: ''},
+    lists: {list: []},
+    cards: {list: []}
 }
 
 const store = createStore(rootReducer, INITIAL_STATE, applyMiddleware(thunk));

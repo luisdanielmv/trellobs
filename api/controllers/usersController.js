@@ -61,7 +61,8 @@ let getOne = (req, res) => {
                         _id: data._id,
                         firstName: data.firstName,
                         lastName: data.lastName,
-                        username: data.username
+                        username: data.username,
+                        email: data.email
                     },
                     token
                 });

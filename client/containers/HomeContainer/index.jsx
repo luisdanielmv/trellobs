@@ -5,7 +5,7 @@ import axios from 'axios';
 import createBrowserHistory from 'history/createBrowserHistory';
 
 import store from '../../redux/store';
-import { boardRequest } from '../../redux/actions/boardActions';
+import { boardRequest, boardSelect } from '../../redux/actions/boardActions';
 import { Home, Nav } from '../../components/';
 
 
@@ -22,6 +22,11 @@ class HomeContainer extends Component {
         customHistory.push('/login');
     }
 
+    boardSelect(board) {
+        this.props.boardSelect(board);
+        this.props.history.push(`/board?id=${board._id}`);
+    }
+
     componentWillMount() {
         let token = localStorage.getItem('jwt');
         if (!token) {
@@ -33,11 +38,15 @@ class HomeContainer extends Component {
 
     render () {
         let user = JSON.parse(localStorage.getItem('user'));
-        let {boards} = this.props;
+        let boardSelect = this.boardSelect.bind(this);
+        let { boards } = this.props;
         return (
             <div>
                 <Nav user={user}/>
-                <Home boards={boards}/>
+                <Home 
+                    boards={boards}
+                    boardSelect = {boardSelect}
+                />
             </div>
         );
     }
@@ -45,9 +54,9 @@ class HomeContainer extends Component {
 
 const mapStateToProps = store => {
   return {
-    boards: store.boards,
+    boards: store.boards.list,
     auth: store.auth
   };
 };
 
-export default connect(mapStateToProps, {boardRequest})(HomeContainer);
+export default connect(mapStateToProps, {boardRequest, boardSelect})(HomeContainer);

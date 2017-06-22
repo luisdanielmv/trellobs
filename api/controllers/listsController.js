@@ -1,4 +1,7 @@
 // Lists Controller
+require('dotenv').config();
+const jwt = require('jsonwebtoken');
+
 let mongoose = require('mongoose');
 let Lists = require('./../models/list');
 
@@ -8,12 +11,14 @@ const respond = (res, status, json) => {
 }
 
 let get = (req, res) => {
-    Lists.find(req.query).exec((err, data) => {
+    let userInfo = jwt.verify(req.query.token, process.env.SECRET);
+    let boardID = req.query.boardID;
+
+    Lists.find().where('boardId').equals(boardID).exec((err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {
             respond(res, 200, data);
-            console.log(req.query);
         }
     });
 };
@@ -24,7 +29,6 @@ let getOne = (req, res) => {
             respond(res, 404, err);
         } else {
             respond(res, 200, data);
-            console.log(req.query);
         }
     });
 };

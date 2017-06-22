@@ -1,46 +1,52 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { arrayOf, shape, string, number, object} from 'prop-types';
+import { arrayOf, shape, string, number, object, func} from 'prop-types';
 
 import './home.scss';
-import addIcon from './img/add-Icon.svg';
+import addIcon from '../home/img/add-Icon.svg';
 
 class Home extends Component {
-    constructor ( props ) {
-        super( props )
+    constructor(props) {
+        super(props)
     }
 
-    render () {
-        let {boards} = this.props;
-        console.log('prop-boards', boards);
+    static propTypes = {
+        boards: arrayOf(object),
+        boardSelect: func.isRequired
+    }
+
+    render() {
+        let { boards, boardSelect} = this.props;
         return (
             <div className="home__wrapper container">
                 <header className='home__header'>
                     <h1>Personal Boards</h1>
                 </header>
                 <main className="home__main row">
-                    <div className="col-xs-12 div col-sm-4 col-md-3">
-                        <div className="home__board">
-                            <span></span>
-                        </div>
-                    </div>
-                    {/*<div className="home__list-holder">
-                        {
-                            lists.map((list) => {
-                                return (<ListContainer key={list.name} list={list}/>)
-                            })
-                        }
-                        <div className="list">
-                            <button className='list__btn'>
-                                <figure className='list__icon'>
+                    {
+                        !!boards && boards.map((board) => {
+                            return (
+                                <div key={board._id} className="col-xs-12 col-sm-6 col-md-4 col-lg-3 home__board-holder">
+                                    <div onClick={() => boardSelect(board)} className="home__board">
+                                        <span>{board.name}</span>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+
+                    <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 home__board-holder">
+                        <div className="home__board home__board-add">
+                            <button className='home__btn'>
+                                <figure className='home__icon'>
                                     <img src={addIcon} alt="Add Icon" />
                                 </figure>
                                 <span>Add a Board</span>
                             </button>
                         </div>
-                    </div>*/}
+                    </div>
                 </main>
-            </div>
+            </div >
         );
     }
 }

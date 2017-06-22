@@ -1,4 +1,4 @@
-import { BOARD_ADD, BOARD_GET, BOARD_UPDATE, BOARD_DELETE } from '../actions/types';
+import { BOARD_ADD, BOARD_GET, BOARD_UPDATE, BOARD_DELETE, BOARD_SELECT } from '../actions/types';
 
 import store from '../store';
 
@@ -9,7 +9,6 @@ export function boardRequest(token) {
     return (dispatch) => {
         return axios.get(`http://localhost:7777/api/boards`, {params: {token}})
             .then((response) => {
-                console.log('boards response', response.data);
                 dispatch({
                     type: BOARD_GET,
                     boards: response.data
@@ -17,4 +16,11 @@ export function boardRequest(token) {
             })
             .catch((err) => console.log(err));
     }
+}
+
+export function boardSelect(board) {
+    return store.dispatch({
+        type: BOARD_SELECT,
+        board: board
+    })
 }

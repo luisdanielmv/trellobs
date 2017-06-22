@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const cardSchema = new mongoose.Schema(
     {
-        desc: {
+        content: {
             type: String,
             required:true
         },
@@ -10,8 +10,12 @@ const cardSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        postiton: {
+        position: {
             type: Number,
+            required: true
+        },
+        dueDate: {
+            type: String,
             required: true
         }
     }

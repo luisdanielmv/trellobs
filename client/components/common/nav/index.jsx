@@ -19,7 +19,6 @@ class Nav extends Component {
 
   render() {
     let {user} = this.props;
-    console.log(user);
     return (
       <nav className="navbar navbar-default" role="navigation">
         <div className="flex-row">
@@ -70,13 +69,13 @@ class Nav extends Component {
             </ul>
             <div className="dropdown username">
               <button className="btn btn-default dropdown-toggle nav__btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span className='hidden-xs'>Username</span>
+                <span className='hidden-xs'>{user.email}</span>
                 <span className="hidden-xs">
                   <figure className='nav__icon'>
                     <img src={arrowIcon} alt="Bell Icon" />
                   </figure>
                 </span>
-                <span className="visible-xs">LD</span>
+                <span className="visible-xs">{user.firstName.toUpperCase().charAt(0)}{user.lastName.toUpperCase().charAt(0)}</span>
               </button>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <li><a href="#">Action</a></li>

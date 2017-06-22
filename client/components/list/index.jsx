@@ -9,15 +9,18 @@ import Card from '../card';
 
 class List extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+
+        }
     }
 
     render() {
-        let { list } = this.props;
-        let {cards} = list;
+        let { addCard, cards, cardFormVisible, handleNewCardContentChange, hideCardForm, list, newCard, showCardForm } = this.props;
         return (
             <div className="list">
                 <h2>{list.name}</h2>
+                
                 <div className='list__card-holder'>
                     {cards.map((card) => {
                         return (
@@ -26,13 +29,31 @@ class List extends Component {
                                 card={card}
                             />)
                     })}
+
                 </div>
-                <button className='list__btn'>
-                    <figure className='list__icon'>
-                        <img src={addIcon} alt="Add Icon" />
-                    </figure>
-                    <span>Add a Card</span>
-                </button>
+
+                <div className='list__btn-holder'>
+                    {cardFormVisible ?
+                        <div onBlur={(hideCardForm)} className="list__add-card">
+                            <div className="form-group">
+                                <textarea onChange={handleNewCardContentChange} className='form-control' autoFocus='true' value={newCard.content}></textarea>
+                            </div>
+                            <button onClick={addCard} type='button' className="list__btn">
+                                <figure className='list__icon'>
+                                    <img src={addIcon} alt="Add Icon" />
+                                </figure>
+                                <span>Add a Card</span>
+                            </button>
+                        </div>
+                        :
+                        <button onClick={showCardForm} className='list__btn'>
+                            <figure className='list__icon'>
+                                <img src={addIcon} alt="Add Icon" />
+                            </figure>
+                            <span>Add a Card</span>
+                        </button>
+                    }
+                </div>
             </div>
         );
     }
