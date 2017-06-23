@@ -11,7 +11,7 @@ const respond = (res, status, json) => {
 }
 
 let get = (req, res) => {
-    let userInfo = jwt.verify(req.query.token, process.env.SECRET);
+    let userInfo = jwt.verify(req.headers.authorization, process.env.SECRET);
 
     Boards.find().where('ownerId').equals(userInfo._id).exec((err, data) => {
         if (err) {
@@ -33,7 +33,7 @@ let getOne = (req, res) => {
 };
 
 let add = (req, res) => {
-    let userInfo = jwt.verify(req.body.token, process.env.SECRET);
+    let userInfo = jwt.verify(req.headers.authorization, process.env.SECRET);
 
     const newBoard = new Boards(req.body.newBoard);
     

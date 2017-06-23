@@ -6,8 +6,14 @@ import axios from 'axios';
 
 export function listRequest(token, boardID) {
     let dispatch = store.dispatch;
+    var instance = axios.create({
+        baseURL: 'http://localhost:7777/api',
+        headers: { 'Authorization': localStorage.getItem('jwt') }
+    });
+
+    const self = this;
     return (dispatch) => {
-        return axios.get(`http://localhost:7777/api/lists`, {params: {token, boardID}})
+        return instance.get(`/lists`, { params: { boardID } })
             .then((response) => {
                 dispatch({
                     type: LIST_GET,
@@ -21,13 +27,13 @@ export function listRequest(token, boardID) {
 export function listAdd(token, newList) {
     let dispatch = store.dispatch;
     var instance = axios.create({
-            baseURL: 'http://localhost:7777/api',
-            headers: { 'Authorization': 'Basic ' + localStorage.getItem('jwt') }
-        });
+        baseURL: 'http://localhost:7777/api',
+        headers: { 'Authorization': localStorage.getItem('jwt') }
+    });
 
-        const self = this;
-        return (dispatch) => {
-        instance.post('/lists', {token, newList})
+    const self = this;
+    return (dispatch) => {
+        return instance.post('/lists', { newList })
             .then((response) => {
                 dispatch({
                     type: LIST_ADD,
@@ -35,5 +41,5 @@ export function listAdd(token, newList) {
                 });
             })
             .catch((err) => console.log(err));
-        }
+    }
 }

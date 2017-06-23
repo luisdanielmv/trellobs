@@ -11,7 +11,7 @@ const respond = (res, status, json) => {
 }
 
 let get = (req, res) => {
-    let userInfo = jwt.verify(req.query.token, process.env.SECRET);
+    let userInfo = jwt.verify(req.headers.authorization, process.env.SECRET);
     let idList = req.query.idList;
 
     Cards.find().exec((err, data) => {
@@ -34,7 +34,7 @@ let getOne = (req, res) => {
 };
 
 let add = (req, res) => {
-    let userInfo = jwt.verify(req.body.token, process.env.SECRET);
+    let userInfo = jwt.verify(req.headers.authorization, process.env.SECRET);
 
     const newCard = new Cards(req.body.newCard);
 

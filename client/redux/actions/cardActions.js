@@ -6,8 +6,14 @@ import axios from 'axios';
 
 export function cardRequest(token, idList) {
     let dispatch = store.dispatch;
+    var instance = axios.create({
+        baseURL: 'http://localhost:7777/api',
+        headers: { 'Authorization': localStorage.getItem('jwt') }
+    });
+
+    const self = this;
     return (dispatch) => {
-        return axios.get(`http://localhost:7777/api/cards`, {params: {token, idList}})
+        return instance.get(`/cards`, { params: { token, idList } })
             .then((response) => {
                 dispatch({
                     type: CARD_GET,
@@ -21,13 +27,13 @@ export function cardRequest(token, idList) {
 export function cardAdd(token, newCard) {
     let dispatch = store.dispatch;
     var instance = axios.create({
-            baseURL: 'http://localhost:7777/api',
-            headers: { 'Authorization': 'Basic ' + localStorage.getItem('jwt') }
-        });
+        baseURL: 'http://localhost:7777/api',
+        headers: { 'Authorization': localStorage.getItem('jwt') }
+    });
 
-        const self = this;
-        return (dispatch) => {
-        instance.post('/cards', {token, newCard})
+    const self = this;
+    return (dispatch) => {
+        return instance.post('/cards', { newCard })
             .then((response) => {
                 dispatch({
                     type: CARD_ADD,
@@ -35,5 +41,5 @@ export function cardAdd(token, newCard) {
                 });
             })
             .catch((err) => console.log(err));
-        }
+    }
 }

@@ -12,11 +12,11 @@ class Board extends Component {
     }
 
     render() {
-        let { addList, lists, listFormVisible, newList, handleNewListNameChange, hideNewListForm, showNewListForm, user } = this.props;
+        let { activeBoard, addList, lists, listFormVisible, newList, handleNewListNameChange, hideNewListForm, showNewListForm, user } = this.props;
         return (
             <div className="board__wrapper">
                 <header className='board__header'>
-                    <h1>This is the Project Title</h1>
+                    <h1>{activeBoard.name}</h1>
                     {/*<div>
                         <button className='board__btn'>Calendar</button>
                         <button className='board__btn'>Show Menu</button>

@@ -7,7 +7,7 @@ const INITIAL_STATE = {
     auth: {
         error: '', message: '', authenticated: true, user: {}
     },
-    boards: {list: [], activeBoardId: ''},
+    boards: {list: [], activeBoard: ''},
     lists: {list: []},
     cards: {list: []}
 }

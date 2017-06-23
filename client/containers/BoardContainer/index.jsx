@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, object, string } from 'prop-types';
+import createBrowserHistory from 'history/createBrowserHistory';
 
 import store from '../../redux/store';
 import { listRequest, listAdd } from '../../redux/actions/listActions';
@@ -26,9 +27,9 @@ class BoardContainer extends Component {
             newList.name = 'Untitled List';
         }
         let token = localStorage.getItem('jwt');
-        let {activeBoardId} = this.props;
+        let {activeBoard} = this.props;
         
-        newList.boardId = activeBoardId;
+        newList.boardId = activeBoard._id;
 
         this.props.listAdd(token, newList);
         
@@ -68,10 +69,10 @@ class BoardContainer extends Component {
         let token = localStorage.getItem('jwt');
         if (!token) {
             this.logOut();
-        } else if(!this.props.activeBoardId) {
+        } else if(!this.props.activeBoard) {
             this.props.history.push(`/home`);
         } else {
-            this.props.listRequest(token, this.props.activeBoardId).then(
+            this.props.listRequest(token, this.props.activeBoard._id).then(
                 () => {
                     let idList = _.map(this.props.lists, '_id');
                     this.props.cardRequest(token, idList);
@@ -83,17 +84,19 @@ class BoardContainer extends Component {
     render () {
         let {listFormVisible, newList} = this.state;
         let user = JSON.parse(localStorage.getItem('user'));
-        let { lists } = this.props;
+        let { lists, activeBoard } = this.props;
         let addList = this.addList.bind(this);
         let handleNewListNameChange = this.handleNewListNameChange.bind(this);
         let hideNewListForm = this.hideNewListForm.bind(this);
         let showNewListForm = this.showNewListForm.bind(this);
+
         return (
             <div>
                 <Nav user={user} logOut={this.logOut}/>
                 <Board
                     user={user}
                     lists={lists}
+                    activeBoard={activeBoard}
 
                     listFormVisible = {listFormVisible}
                     newList = {newList}
@@ -110,7 +113,7 @@ class BoardContainer extends Component {
 const mapStateToProps = store => {
   return {
     lists: store.lists.list,
-    activeBoardId: store.boards.activeBoardId
+    activeBoard: store.boards.activeBoard
   };
 };
 

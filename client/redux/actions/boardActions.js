@@ -6,8 +6,14 @@ import axios from 'axios';
 
 export function boardRequest(token) {
     let dispatch = store.dispatch;
+    var instance = axios.create({
+        baseURL: 'http://localhost:7777/api',
+        headers: { 'Authorization': localStorage.getItem('jwt') }
+    });
+
+    const self = this;
     return (dispatch) => {
-        return axios.get(`http://localhost:7777/api/boards`, {params: {token}})
+        return instance.get(`/boards`)
             .then((response) => {
                 dispatch({
                     type: BOARD_GET,
@@ -22,13 +28,13 @@ export function boardAdd(token, newBoard) {
     console.log(newBoard);
     let dispatch = store.dispatch;
     var instance = axios.create({
-            baseURL: 'http://localhost:7777/api',
-            headers: { 'Authorization': 'Basic ' + localStorage.getItem('jwt') }
-        });
+        baseURL: 'http://localhost:7777/api',
+        headers: { 'Authorization': localStorage.getItem('jwt') }
+    });
 
-        const self = this;
-        return (dispatch) => {
-        instance.post('/boards', {token, newBoard})
+    const self = this;
+    return (dispatch) => {
+        return instance.post('/boards', {newBoard})
             .then((response) => {
                 dispatch({
                     type: BOARD_ADD,
