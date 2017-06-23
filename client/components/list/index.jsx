@@ -7,6 +7,8 @@ import addIcon from './img/add-Icon.svg';
 
 import Card from '../card';
 
+var _ = require('lodash');
+
 class List extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +24,7 @@ class List extends Component {
                 <h2>{list.name}</h2>
                 
                 <div className='list__card-holder'>
-                    {cards.map((card) => {
+                    {_.filter(cards, {listId: list._id}).map((card) => {
                         return (
                             <Card
                                 key={card.content}
@@ -42,7 +44,7 @@ class List extends Component {
                                 <figure className='list__icon'>
                                     <img src={addIcon} alt="Add Icon" />
                                 </figure>
-                                <span>Add a Card</span>
+                                <span>Save</span>
                             </button>
                         </div>
                         :

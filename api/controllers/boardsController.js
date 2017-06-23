@@ -28,13 +28,15 @@ let getOne = (req, res) => {
             respond(res, 404, err);
         } else {
             respond(res, 200, data);
-            console.log(req.query);
         }
     });
 };
 
 let add = (req, res) => {
-    const newBoard = new Boards(req.body);
+    let userInfo = jwt.verify(req.body.token, process.env.SECRET);
+
+    const newBoard = new Boards(req.body.newBoard);
+    
     newBoard.save((err, data) => {
         if (err) {
             respond(res, 400, err);

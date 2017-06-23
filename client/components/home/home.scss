@@ -71,6 +71,9 @@
 
         .home__board-add:hover {
             background-color: #a1a7b4;
+            .home__btn {
+                text-decoration: underline;
+            }
         }
     }
 

@@ -12,7 +12,7 @@ class Board extends Component {
     }
 
     render() {
-        let { lists, user } = this.props;
+        let { addList, lists, listFormVisible, newList, handleNewListNameChange, hideNewListForm, showNewListForm, user } = this.props;
         return (
             <div className="board__wrapper">
                 <header className='board__header'>
@@ -26,16 +26,31 @@ class Board extends Component {
                     <div className="board__list-holder">
                         {
                             lists.map((list) => {
-                                return (<ListContainer key={list.name} list={list} user={user}/>)
+                                return (<ListContainer key={list.name} list={list} user={user} />)
                             })
                         }
                         <div className="list board__add-list">
-                            <button className='list__btn'>
-                                <figure className='list__icon'>
-                                    <img src={addIcon} alt="Add Icon" />
-                                </figure>
-                                <span>Add a List</span>
-                            </button>
+                            {listFormVisible ?
+                                <div className='board__newList-form-holder' onBlur={hideNewListForm}>
+                                    <div className="form-group">
+                                        <input onChange={handleNewListNameChange} className='form-control' autoFocus='true' value={newList.name} />
+                                    </div>
+                                    <button onClick={addList} className='board__btn'>
+                                        <figure className='board__icon'>
+                                            <img src={addIcon} alt="Add Icon" />
+                                        </figure>
+                                        <span>Save</span>
+                                    </button>
+                                </div>
+                                :
+                                <button onClick={showNewListForm} className='board__btn'>
+                                    <figure className='board__icon'>
+                                        <img src={addIcon} alt="Add Icon" />
+                                    </figure>
+                                    <span>Add a List</span>
+                                </button>
+                            }
+
                         </div>
                     </div>
                 </main>

@@ -29,7 +29,14 @@
         }
 
         .board__add-list {
-            padding: 1.9375rem 1.25rem;
+            padding: 1.25rem;
+
+            .board__newList-form-holder {
+                width: 100%;
+            }
+            .form-group {
+                width: 100%;
+            }
         }
     }
 
@@ -60,10 +67,28 @@
 
     .board__btn {
         align-items: center;
-        background-color: #f5f8ff;
+        background-color: #FFFFFF;
         border: none;
         display: flex;
+        height: 2rem;
+        padding: 0;
         outline: none;
+        width: 100%;
+
+        span {
+            color: #3f3f3f;
+            font-size: 0.75rem;
+            margin-left: 0.625rem;
+        }
+    }
+
+    .board__btn:hover {
+        text-decoration: underline;
+    }
+
+    .board__icon {
+        height: 1.25rem;
+        width: 1.25rem;
     }
 }
 

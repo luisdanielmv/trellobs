@@ -28,7 +28,6 @@ app.use(enableCORS);
 app.use('/api', routes);
 
 app.get('/', (req, res, next) =>{
-    console.log(req);
     next();
 });
 

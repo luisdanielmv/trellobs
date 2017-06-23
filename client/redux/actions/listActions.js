@@ -17,3 +17,23 @@ export function listRequest(token, boardID) {
             .catch((err) => console.log(err));
     }
 }
+
+export function listAdd(token, newList) {
+    let dispatch = store.dispatch;
+    var instance = axios.create({
+            baseURL: 'http://localhost:7777/api',
+            headers: { 'Authorization': 'Basic ' + localStorage.getItem('jwt') }
+        });
+
+        const self = this;
+        return (dispatch) => {
+        instance.post('/lists', {token, newList})
+            .then((response) => {
+                dispatch({
+                    type: LIST_ADD,
+                    list: response.data
+                });
+            })
+            .catch((err) => console.log(err));
+        }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { arrayOf, shape, string, number, object, func} from 'prop-types';
+import { arrayOf, shape, string, number, object, func } from 'prop-types';
 
 import './home.scss';
 import addIcon from '../home/img/add-Icon.svg';
@@ -16,7 +16,7 @@ class Home extends Component {
     }
 
     render() {
-        let { boards, boardSelect} = this.props;
+        let { boards, boardSelect, boardFormVisible, newBoard, showNewBoardForm, hideNewBoardForm, handleNewBoardNameChange, addBoard } = this.props;
         return (
             <div className="home__wrapper container">
                 <header className='home__header'>
@@ -37,12 +37,26 @@ class Home extends Component {
 
                     <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3 home__board-holder">
                         <div className="home__board home__board-add">
-                            <button className='home__btn'>
-                                <figure className='home__icon'>
-                                    <img src={addIcon} alt="Add Icon" />
-                                </figure>
-                                <span>Add a Board</span>
-                            </button>
+                            {boardFormVisible ?
+                                <div onBlur={(hideNewBoardForm)}>
+                                    <div className="form-group">
+                                        <input onChange={handleNewBoardNameChange} className='form-control' autoFocus='true' value={newBoard.name}></input>
+                                    </div>
+                                    <button onClick={addBoard} type='button' className='home__btn'>
+                                        <figure className='home__icon'>
+                                            <img src={addIcon} alt="Add Icon" />
+                                        </figure>
+                                        <span>Save</span>
+                                    </button>
+                                </div>
+                                :
+                                <button onClick={showNewBoardForm} className='home__btn'>
+                                    <figure className='home__icon'>
+                                        <img src={addIcon} alt="Add Icon" />
+                                    </figure>
+                                    <span>Add a Board</span>
+                                </button>
+                            }
                         </div>
                     </div>
                 </main>

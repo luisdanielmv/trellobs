@@ -12,9 +12,9 @@ const respond = (res, status, json) => {
 
 let get = (req, res) => {
     let userInfo = jwt.verify(req.query.token, process.env.SECRET);
-    let listID = req.query.listID;
+    let idList = req.query.idList;
 
-    Cards.find().where('listId').equals(listID).exec((err, data) => {
+    Cards.find().exec((err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {
@@ -43,8 +43,6 @@ let add = (req, res) => {
             respond(res, 400, err);
         } else {
             respond(res, 201, data);
-            // console.log('Header', req.header);
-            // console.log('Headers', req.headers);
         }
     });
 }

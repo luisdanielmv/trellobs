@@ -34,7 +34,10 @@ let getOne = (req, res) => {
 };
 
 let add = (req, res) => {
-    const newList = new Lists(req.body);
+    let userInfo = jwt.verify(req.body.token, process.env.SECRET);
+
+    const newList = new Lists(req.body.newList);
+
     newList.save((err, data) => {
         if (err) {
             respond(res, 400, err);

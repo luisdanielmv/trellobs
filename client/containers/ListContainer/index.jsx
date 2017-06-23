@@ -40,25 +40,22 @@ class ListContainer extends Component {
     }
 
     addCard() {
+        let newCard = Object.assign({}, this.state.newCard);
+        if (!newCard.content) {
+            newCard.content = 'Blank Card';
+        }
         let token = localStorage.getItem('jwt');
         let {list} = this.props;
-        let newCard = Object.assign({}, this.state.newCard);
+        
         newCard.dueDate = moment().add(7, 'days');
         newCard.listId = list._id;
         newCard.position = 0;
 
-        console.log(newCard);
         this.props.cardAdd(token, newCard);
         
         this.setState({
             newCard: {content:''}
         });
-    }
-
-    componentWillMount() {
-        let {list} = this.props;
-        let token = localStorage.getItem('jwt');
-        this.props.cardRequest(token, this.props.list._id);
     }
 
     render () {

@@ -36,19 +36,15 @@ let get = (req, res) => {
             respond(res, 404, err);
         } else {
             respond(res, 200, data);
-            console.log(req.query);
         }
     });
 };
 
 let getOne = (req, res) => {
-    console.log('query: ', req.body);
-
     const { errors, isValid } = validateInput(req.body);
 
     if (!isValid) {
         res.status(422).json(errors);
-        console.log(errors);
     } else {
         Users.findOne(req.body).exec((err, data) => {
             if (err) {
@@ -83,7 +79,6 @@ let add = (req, res) => {
 }
 
 let del = (req, res) => {
-    console.log(req.body);
     Users.remove(req.body, (err, data) => {
         if (err) {
             respond(res, 404, err);

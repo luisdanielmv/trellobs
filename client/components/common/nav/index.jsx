@@ -18,7 +18,7 @@ class Nav extends Component {
   }
 
   render() {
-    let {user} = this.props;
+    let { user, logOut} = this.props;
     return (
       <nav className="navbar navbar-default" role="navigation">
         <div className="flex-row">
@@ -43,9 +43,11 @@ class Nav extends Component {
 
           <div className="flex-grow flex-row flex__center">
             <div className="navbar-brand" href="#">
-              <div className='nav__logo '>
-                <img src={logo} alt="" />
-              </div>
+              <Link to='/home'>
+                <figure className='nav__logo '>
+                  <img src={logo} alt="" />
+                </figure>
+              </Link>
             </div>
           </div>
 
@@ -78,11 +80,13 @@ class Nav extends Component {
                 <span className="visible-xs">{user.firstName.toUpperCase().charAt(0)}{user.lastName.toUpperCase().charAt(0)}</span>
               </button>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">{user.firstName} {user.lastName}</a></li>
                 <li role="separator" className="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Cards</a></li>
+                <li><a href="#">Settings</a></li>
+                <li role="separator" className="divider"></li>
+                <li><a onClick={logOut} href="#">Log Out</a></li>
               </ul>
             </div>
           </div>

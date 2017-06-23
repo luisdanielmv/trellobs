@@ -18,6 +18,27 @@ export function boardRequest(token) {
     }
 }
 
+export function boardAdd(token, newBoard) {
+    console.log(newBoard);
+    let dispatch = store.dispatch;
+    var instance = axios.create({
+            baseURL: 'http://localhost:7777/api',
+            headers: { 'Authorization': 'Basic ' + localStorage.getItem('jwt') }
+        });
+
+        const self = this;
+        return (dispatch) => {
+        instance.post('/boards', {token, newBoard})
+            .then((response) => {
+                dispatch({
+                    type: BOARD_ADD,
+                    board: response.data
+                });
+            })
+            .catch((err) => console.log(err));
+        }
+}
+
 export function boardSelect(board) {
     return store.dispatch({
         type: BOARD_SELECT,
