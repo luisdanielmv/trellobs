@@ -11,9 +11,9 @@
     "build": "cross-env NODE_ENV=production webpack && cp dist/index.html dist/404.html",
     "dev": "webpack-dev-server",
     "docs": "raml2html docs/api.raml > docs/api.html",
-    "//node": "node ./api/start.js",
+    "node": "node ./api/start.js",
     "nodemon": "nodemon ./api/start.js",
-    "start": "npm run build",
+    "start": "npm run node",
     "//": "concurrently \"npm run node\" \"npm run build\""
   },
   "repository": {
