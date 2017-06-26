@@ -14,6 +14,8 @@
     "nodemon": "nodemon ./api/start.js",
     "node": "node ./api/start.js",
     "start": "npm run build",
+    "//postinstall": "npm run heroku",
+    "//heroku": "cross-env NODE_ENV=production node_modules/.bin/webpack --color -p",
     "//": "concurrently \"npm run node\" \"npm run build\""
   },
   "repository": {
