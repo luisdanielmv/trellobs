@@ -50,8 +50,6 @@ class ListContainer extends Component {
         if (!!dragTarget) {
             if (dragTarget._id != draggedCard.listId) {
                 this.props.cardUpdate(updatedCard);
-                this.props.listSelect({});
-                this.props.cardSelect({});
             }
         }
     }
@@ -67,7 +65,8 @@ class ListContainer extends Component {
     }
 
     handleDragEnd(e) {
-        this.props.listSelect('');
+        this.props.listSelect({});
+        this.props.cardSelect({});
     }
 
     handleDragOver(e) {
@@ -105,6 +104,7 @@ class ListContainer extends Component {
         let addCard = this.addCard.bind(this);
         let handleCardDrop = this.handleCardDrop.bind(this);
         let handleDragCardEnterList = this.handleDragCardEnterList.bind(this);
+        let handleDragEnd = this.handleDragEnd.bind(this);
         let handleDragOver = this.handleDragOver.bind(this);
         let handleDragStart = this.handleDragStart.bind(this);
         let handleNewCardContentChange = this.handleNewCardContentChange.bind(this);
@@ -124,6 +124,7 @@ class ListContainer extends Component {
                 handleCardClick={handleCardClick}
                 handleCardDrop={handleCardDrop}
                 handleDragCardEnterList={handleDragCardEnterList}
+                handleDragEnd={handleDragEnd}
                 handleDragOver={handleDragOver}
                 handleDragStart={handleDragStart}
                 handleNewCardContentChange={handleNewCardContentChange}

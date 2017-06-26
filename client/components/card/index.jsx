@@ -13,9 +13,9 @@ class Card extends Component {
     }
 
     render() {
-        let {card, user, handleCardClick, handleDragStart} = this.props;
+        let {card, user, handleCardClick, handleDragEnd, handleDragStart} = this.props;
         return (
-            <div className="card" draggable='true' onClick={(e)=>{handleCardClick(card)}} onDragStart={(e)=>{handleDragStart(card, e.target.offsetHeight)}}>
+            <div className="card" draggable='true' onClick={(e)=>{handleCardClick(card)}} onDragEnd={handleDragEnd} onDragStart={(e)=>{handleDragStart(card, e.target.offsetHeight)}}>
                 <p>{card.content}</p>
                 <div className="details">
                     <span>{moment(card.dueDate).format('MMM DD')}</span>

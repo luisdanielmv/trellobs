@@ -4,7 +4,7 @@ import {
   AUTH_ERROR
 } from '../actions/types';
 
-const INITIAL_STATE = { error: '', message: '', content: '', authenticated: false, user: {} }
+const INITIAL_STATE = { errors: {}, message: '', content: '', authenticated: false, user: {} }
 
 export default function (state = INITIAL_STATE, action) {
   switch (action.type) {

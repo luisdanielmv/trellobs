@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { func } from 'prop-types';
 import axios from 'axios';
 
@@ -43,27 +43,27 @@ class Register extends Component {
                                 <div className="form-group">
                                     
                                     <input type='text' className='form-control' name='firstname' placeholder='First name' onChange={handleFirstNameChange} value={firstName} />
-                                    {errors.firstName && <span className="help-block">This is an error notification</span>}
+                                    {errors.firstName && <span className="help-block">{errors.firstName}</span>}
                                 </div>
                                 <div className="form-group">
                                     
                                     <input type='text' className='form-control' name='lastname' placeholder='Last name' onChange={handleLastNameChange} value={lastName} />
-                                    {errors.lastName && <span className="help-block">This is an error notification</span>}
+                                    {errors.lastName && <span className="help-block">{errors.lastName}</span>}
                                 </div>
                                 <div className="form-group">
 
                                     <input type='text' className='form-control' name='username' placeholder='Username' onChange={handleUsernameChange} value={username} />
-                                    {errors.username && <span className="help-block">This is an error notification</span>}
+                                    {errors.username && <span className="help-block">{errors.username}</span>}
                                 </div>
                                 <div className="form-group">
 
                                     <input type='email' className='form-control' name='email' placeholder='Email' onChange={handleEmailChange} value={email} />
-                                    {errors.email && <span className="help-block">This is an error notification</span>}
+                                    {errors.email && <span className="help-block">{errors.email}</span>}
                                 </div>
                                 <div className="form-group">
 
                                     <input type='password' className='form-control' name='password' placeholder='Password' onChange={handlePasswordChange} value={password} />
-                                    {errors.password && <span className="help-block">This is an error notification</span>}
+                                    {errors.password && <span className="help-block">{errors.password}</span>}
                                 </div>
                                 <button onClick={onSubmit} type='submit' className="btn btn-primary">LOG IN</button>
                             </form>
@@ -71,7 +71,7 @@ class Register extends Component {
                                 <span>OR</span>
                             </div>
                             <div className="signup__createNew">
-                                <a href="#">Create a Trello account</a>
+                                <Link to='/login'>Use existing account</Link>
                             </div>
                         </div>
                     </div>

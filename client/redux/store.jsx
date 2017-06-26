@@ -5,7 +5,7 @@ import {default as rootReducer} from './reducers/';
 
 const INITIAL_STATE = {
     auth: {
-        error: '', message: '', authenticated: true, user: {}
+        errors: {}, message: '', authenticated: true, user: {}
     },
     boards: {list: [], activeBoard: ''},
     lists: {list: [], dragTargetId:''},

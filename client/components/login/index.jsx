@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { arrayOf, shape, string, number, object } from 'prop-types';
 import axios from 'axios';
 
@@ -75,7 +75,7 @@ class Login extends Component {
                                 <span>OR</span>
                             </div>
                             <div className="login__createNew">
-                                <a href="#">Create a Trello account</a>
+                                <Link to='/register'>Create a Trello account</Link>
                             </div>
                         </div>
                     </div>

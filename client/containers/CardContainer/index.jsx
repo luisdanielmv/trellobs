@@ -11,7 +11,7 @@ class CardContainer extends Component {
     }
 
     render() {
-        let { card, handleCardClick, handleCardDrop, handleDragStart} = this.props;
+        let { card, handleCardClick, handleCardDrop, handleDragEnd, handleDragStart} = this.props;
         let user = JSON.parse(localStorage.getItem('user'));
 
         return (
@@ -21,6 +21,7 @@ class CardContainer extends Component {
 
                 handleCardClick={handleCardClick}
                 handleCardDrop={handleCardDrop}
+                handleDragEnd={handleDragEnd}
                 handleDragStart={handleDragStart}
             />
         );

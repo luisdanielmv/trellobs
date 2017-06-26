@@ -12,7 +12,7 @@ router.get('/', function (req, res) {
     res.send('Welcome to the BN api');
 });
 
-router.post('/users', usersController.add);
+router.post('/register', usersController.add);
 router.get('/users', usersController.get);
 router.post('/auth', usersController.getOne);
 router.delete('/users', usersController.del);

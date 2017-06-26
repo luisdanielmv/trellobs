@@ -18,7 +18,7 @@ class List extends Component {
     }
 
     render() {
-        let { cards, cardFormVisible, dragTarget, draggedCardHeight, list, newCard, addCard, handleCardClick, handleCardDrop, handleDragCardEnterList, handleDragOver, handleDragStart, handleNewCardContentChange, hideCardForm, showCardForm } = this.props;
+        let { cards, cardFormVisible, dragTarget, draggedCardHeight, list, newCard, addCard, handleCardClick, handleCardDrop, handleDragCardEnterList, handleDragEnd, handleDragOver, handleDragStart, handleNewCardContentChange, hideCardForm, showCardForm } = this.props;
         return (
             <div className="list" onDragOver={handleDragOver} onDragEnter={handleDragCardEnterList} onDrop={handleCardDrop}>
                 <h2>{list.name}</h2>
@@ -32,6 +32,7 @@ class List extends Component {
 
                                 handleCardClick={handleCardClick}
                                 handleCardDrop={handleCardDrop}
+                                handleDragEnd={handleDragEnd}
                                 handleDragStart={handleDragStart}
                             />)
                     })}
