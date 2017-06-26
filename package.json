@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "Trello Clone React",
   "engines": {
-    "node": "6.9.4"
+    "node": "6.9.4",
+    "npm": "4.5.0"
   },
   "main": "index.js",
   "scripts": {
@@ -37,7 +38,6 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "sass-loader": "^6.0.5",
-    "style-loader": "^0.18.2",
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
@@ -73,6 +73,7 @@
     "redux": "^3.6.0",
     "redux-form": "^6.8.0",
     "redux-thunk": "^2.2.0",
+    "style-loader": "^0.18.2",
     "validator": "^7.0.0",
     "webpack": "^2.6.1"
   }
