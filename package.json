@@ -8,7 +8,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config --progress webpack.production.config.js",
+    "build": "webpack --config webpack.production.config.js",
     "dev": "webpack-dev-server",
     "docs": "raml2html docs/api.raml > docs/api.html",
     "nodemon": "nodemon ./api/start.js",
