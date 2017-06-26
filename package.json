@@ -9,7 +9,7 @@
     "docs": "raml2html docs/api.raml > docs/api.html",
     "nodemon": "nodemon ./api/start.js",
     "node": "node ./api/start.js",
-    "start": "npm run node",
+    "start": "npm run build",
     "//": "concurrently \"npm run node\" \"npm run build\""
   },
   "repository": {
