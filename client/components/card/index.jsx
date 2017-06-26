@@ -13,15 +13,14 @@ class Card extends Component {
     }
 
     render() {
-        let {card} = this.props;
+        let {card, user, handleCardClick, handleDragStart} = this.props;
         return (
-            <div className="card">
+            <div className="card" draggable='true' onClick={(e)=>{handleCardClick(card)}} onDragStart={(e)=>{handleDragStart(card, e.target.offsetHeight)}}>
                 <p>{card.content}</p>
                 <div className="details">
                     <span>{moment(card.dueDate).format('MMM DD')}</span>
                     <div className='card__members'>
-                        <div className='card__members--item'>CP</div>
-                        <div className='card__members--item'>RC</div>
+                        <div className='card__members--item'>{user.firstName.toUpperCase().charAt(0)}{user.lastName.toUpperCase().charAt(0)}</div>
                     </div>
                 </div>
             </div>

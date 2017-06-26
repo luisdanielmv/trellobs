@@ -5,7 +5,7 @@ import { arrayOf, shape, string, number, object } from 'prop-types';
 import './list.scss';
 import addIcon from './img/add-Icon.svg';
 
-import Card from '../card';
+import {CardContainer} from '../../containers';
 
 var _ = require('lodash');
 
@@ -18,20 +18,26 @@ class List extends Component {
     }
 
     render() {
-        let { addCard, cards, cardFormVisible, handleNewCardContentChange, hideCardForm, list, newCard, showCardForm } = this.props;
+        let { cards, cardFormVisible, dragTarget, draggedCardHeight, list, newCard, addCard, handleCardClick, handleCardDrop, handleDragCardEnterList, handleDragOver, handleDragStart, handleNewCardContentChange, hideCardForm, showCardForm } = this.props;
         return (
-            <div className="list">
+            <div className="list" onDragOver={handleDragOver} onDragEnter={handleDragCardEnterList} onDrop={handleCardDrop}>
                 <h2>{list.name}</h2>
-                
-                <div className='list__card-holder'>
-                    {_.filter(cards, {listId: list._id}).map((card) => {
+
+                <div className='list__card-holder' >
+                    {_.filter(cards, { listId: list._id }).map((card) => {
                         return (
-                            <Card
+                            <CardContainer
                                 key={card.content}
                                 card={card}
+
+                                handleCardClick={handleCardClick}
+                                handleCardDrop={handleCardDrop}
+                                handleDragStart={handleDragStart}
                             />)
                     })}
-
+                    {!!dragTarget && (dragTarget._id == list._id) && 
+                        <div className="card" style={{height:`${draggedCardHeight}px`}}></div>
+                    }
                 </div>
 
                 <div className='list__btn-holder'>

@@ -17,6 +17,10 @@ const cardSchema = new mongoose.Schema(
         dueDate: {
             type: String,
             required: true
+        },
+        members: {
+            type: [String],
+            required: true
         }
     }
 );

@@ -5,37 +5,81 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 import store from '../../redux/store';
 import { listRequest, listAdd } from '../../redux/actions/listActions';
-import { cardRequest } from '../../redux/actions/cardActions';
-import { Board, Nav } from '../../components/';
+import { cardRequest, cardUpdate} from '../../redux/actions/cardActions';
+import { Board, CardModal, Nav } from '../../components/';
 
-var _ = require('lodash');
+const _ = require('lodash');
+const moment = require('moment');
 
 class BoardContainer extends Component {
-    constructor ( props ) {
-        super( props );
+    constructor(props) {
+        super(props);
         this.state = {
             listFormVisible: false,
             newList: {
                 name: ''
-            }
+            }, 
+            editableCard: ''
         }
     }
 
-     addList() {
+    addList() {
         let newList = Object.assign({}, this.state.newList);
         if (!newList.name) {
             newList.name = 'Untitled List';
         }
-        let token = localStorage.getItem('jwt');
-        let {activeBoard} = this.props;
-        
+
+        let { activeBoard } = this.props;
+
         newList.boardId = activeBoard._id;
 
-        this.props.listAdd(token, newList);
-        
+        this.props.listAdd(newList);
+
         this.setState({
-            newList: {name: ''}
+            newList: { name: '' }
         });
+    }
+
+    handleCancelEditCard() {
+        this.setState({
+            editableCard: '',
+            modalVisible: false
+        });
+    }
+
+    handleCardClick(card) {
+        let editableCard = Object.assign({}, card);
+        editableCard.dueDate = moment(editableCard.dueDate).format('YYYY-MM-DD');
+        this.setState({
+            editableCard: editableCard,
+            modalVisible: true
+        });
+    }
+
+    handleContentChange(e) {
+        let editableCard = this.state.editableCard;
+        let updatedCard = Object.assign({}, editableCard);
+        updatedCard.content = e.target.value;
+        this.setState({
+            editableCard: updatedCard
+        });
+    }
+
+    handleDueDateChange(e) {
+        let editableCard = this.state.editableCard;
+        let updatedCard = Object.assign({}, editableCard);
+        updatedCard.dueDate = e.target.value;
+        this.setState({
+            editableCard: updatedCard
+        });
+    }
+
+    handleSaveEditCard() {
+        let editableCard = this.state.editableCard;
+        let updatedCard = Object.assign({}, editableCard);
+        updatedCard.dueDate = e.target.value;
+        this.props.cardUpdate(updatedCard);
+        this.handleCancelEditCard();
     }
 
     handleNewListNameChange(e) {
@@ -46,15 +90,22 @@ class BoardContainer extends Component {
         });
     }
 
-    showNewListForm() {
-        this.setState({
-            listFormVisible: true
-        });
+    handleSaveEditCard() {
+        let editableCard = this.state.editableCard;
+        let updatedCard = Object.assign({}, editableCard);
+        this.props.cardUpdate(updatedCard);
+        this.handleCancelEditCard();
     }
 
     hideNewListForm() {
         let self = this;
-        setTimeout(() => {self.setState({listFormVisible: false})}, 100);
+        setTimeout(() => { self.setState({ listFormVisible: false }) }, 100);
+    }
+
+    showNewListForm() {
+        this.setState({
+            listFormVisible: true
+        });
     }
 
     logOut = () => {
@@ -69,52 +120,69 @@ class BoardContainer extends Component {
         let token = localStorage.getItem('jwt');
         if (!token) {
             this.logOut();
-        } else if(!this.props.activeBoard) {
+        } else if (!this.props.activeBoard) {
             this.props.history.push(`/home`);
         } else {
-            this.props.listRequest(token, this.props.activeBoard._id).then(
+            this.props.listRequest(this.props.activeBoard._id).then(
                 () => {
                     let idList = _.map(this.props.lists, '_id');
-                    this.props.cardRequest(token, idList);
+                    this.props.cardRequest(token, idList).then();
                 }
             )
         }
     }
 
-    render () {
-        let {listFormVisible, newList} = this.state;
+    render() {
         let user = JSON.parse(localStorage.getItem('user'));
+        let { editableCard, listFormVisible, newList } = this.state;
         let { lists, activeBoard } = this.props;
+
         let addList = this.addList.bind(this);
         let handleNewListNameChange = this.handleNewListNameChange.bind(this);
         let hideNewListForm = this.hideNewListForm.bind(this);
         let showNewListForm = this.showNewListForm.bind(this);
 
+        let handleCancelEditCard = this.handleCancelEditCard.bind(this);
+        let handleCardClick = this.handleCardClick.bind(this);
+        let handleContentChange = this.handleContentChange.bind(this);
+        let handleDueDateChange = this.handleDueDateChange.bind(this);
+        let handleSaveEditCard = this.handleSaveEditCard.bind(this);
+
         return (
             <div>
-                <Nav user={user} logOut={this.logOut}/>
+                <Nav user={user} logOut={this.logOut} />
                 <Board
-                    user={user}
-                    lists={lists}
                     activeBoard={activeBoard}
+                    lists={lists}
+                    user={user}
 
-                    listFormVisible = {listFormVisible}
-                    newList = {newList}
-                    addList = {addList}
-                    handleNewListNameChange = {handleNewListNameChange}
-                    hideNewListForm = {hideNewListForm}
-                    showNewListForm = {showNewListForm}
+                    listFormVisible={listFormVisible}
+                    newList={newList}
+                    addList={addList}
+                    handleNewListNameChange={handleNewListNameChange}
+                    hideNewListForm={hideNewListForm}
+                    showNewListForm={showNewListForm}
+
+                    handleCardClick={handleCardClick}
                 />
+                {!!editableCard && <CardModal
+                    editableCard = {editableCard}
+
+                    handleCancelEditCard={handleCancelEditCard}
+                    handleContentChange={handleContentChange}
+                    handleDueDateChange={handleDueDateChange}
+                    handleSaveEditCard={handleSaveEditCard}
+                />}
             </div>
         );
     }
 }
 
 const mapStateToProps = store => {
-  return {
-    lists: store.lists.list,
-    activeBoard: store.boards.activeBoard
-  };
+    return {
+        lists: store.lists.list,
+        activeBoard: store.boards.activeBoard,
+    };
 };
 
-export default connect(mapStateToProps, {listRequest, listAdd, cardRequest})(BoardContainer);
+export default connect(mapStateToProps, { listRequest, listAdd, cardRequest, cardUpdate })(BoardContainer);

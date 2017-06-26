@@ -4,11 +4,12 @@
   "description": "Trello Clone React",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
     "dev": "webpack-dev-server",
     "docs": "raml2html docs/api.raml > docs/api.html",
     "nodemon": "nodemon ./api/start.js",
-    "start": "concurrently \"npm run mockapi\" \"npm run dev\""
+    "node": "node ./api/start.js",
+    "start": "concurrently \"npm run node\" \"npm run build\""
   },
   "repository": {
     "type": "git",

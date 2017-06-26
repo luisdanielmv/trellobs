@@ -1,19 +1,16 @@
 import { CARD_ADD, CARD_GET, CARD_UPDATE, CARD_DELETE, CARD_SELECT } from '../actions/types';
+import { getAxiosInstance } from '../config';
 
 import store from '../store';
 
 import axios from 'axios';
 
-export function cardRequest(token, idList) {
-    let dispatch = store.dispatch;
-    var instance = axios.create({
-        baseURL: 'http://localhost:7777/api',
-        headers: { 'Authorization': localStorage.getItem('jwt') }
-    });
+export function cardRequest(idList) {
+    const dispatch = store.dispatch;
+    const instance = getAxiosInstance();
 
-    const self = this;
-    return (dispatch) => {
-        return instance.get(`/cards`, { params: { token, idList } })
+    return () => {
+        return instance.get(`/cards`, { params: { idList } })
             .then((response) => {
                 dispatch({
                     type: CARD_GET,
@@ -24,15 +21,11 @@ export function cardRequest(token, idList) {
     }
 }
 
-export function cardAdd(token, newCard) {
-    let dispatch = store.dispatch;
-    var instance = axios.create({
-        baseURL: 'http://localhost:7777/api',
-        headers: { 'Authorization': localStorage.getItem('jwt') }
-    });
+export function cardAdd(newCard) {
+    const dispatch = store.dispatch;
+    const instance = getAxiosInstance();
 
-    const self = this;
-    return (dispatch) => {
+    return () => {
         return instance.post('/cards', { newCard })
             .then((response) => {
                 dispatch({
@@ -42,4 +35,27 @@ export function cardAdd(token, newCard) {
             })
             .catch((err) => console.log(err));
     }
+}
+
+export function cardUpdate(updatedCard) {
+    const dispatch = store.dispatch;
+    const instance = getAxiosInstance();
+
+    return () => {
+        return instance.put('/cards', { updatedCard })
+            .then((response) => {
+                dispatch({
+                    type: CARD_UPDATE,
+                    card: updatedCard
+                });
+            })
+            .catch((err) => console.log(err));
+    }
+}
+
+export function cardSelect(card) {
+    return store.dispatch({
+        type: CARD_SELECT,
+        card: card
+    })
 }

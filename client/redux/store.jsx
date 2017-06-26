@@ -8,8 +8,8 @@ const INITIAL_STATE = {
         error: '', message: '', authenticated: true, user: {}
     },
     boards: {list: [], activeBoard: ''},
-    lists: {list: []},
-    cards: {list: []}
+    lists: {list: [], dragTargetId:''},
+    cards: {list: [], draggedCard: '', editableCard: ''}
 }
 
 const store = createStore(rootReducer, INITIAL_STATE, applyMiddleware(thunk));

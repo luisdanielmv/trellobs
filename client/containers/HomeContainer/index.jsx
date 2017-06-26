@@ -26,7 +26,6 @@ class HomeContainer extends Component {
             newBoard.name = 'Untitled Board';
         }
 
-        let token = localStorage.getItem('jwt');
         let user = JSON.parse(localStorage.getItem('user'));
 
         newBoard.ownerId = user._id;
@@ -34,7 +33,7 @@ class HomeContainer extends Component {
         newBoard.members = 'private';
         newBoard.background = "Color-class"
 
-        this.props.boardAdd(token, newBoard);
+        this.props.boardAdd( newBoard);
 
         this.setState({
             newBoard: { name: '' }

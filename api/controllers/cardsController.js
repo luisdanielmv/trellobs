@@ -36,7 +36,9 @@ let getOne = (req, res) => {
 let add = (req, res) => {
     let userInfo = jwt.verify(req.headers.authorization, process.env.SECRET);
 
-    const newCard = new Cards(req.body.newCard);
+    let newCard = new Cards(req.body.newCard);
+
+    newCard.members = [userInfo._id];
 
     newCard.save((err, data) => {
         if (err) {
@@ -58,8 +60,13 @@ let del = (req, res) => {
 }
 
 let update = (req, res) => {
-    let conditions = {_id: req.body._id};
-    Cards.update(conditions, req.body, (err, data) => {
+    let userInfo = jwt.verify(req.headers.authorization, process.env.SECRET);
+    let updatedCard = req.body.updatedCard;
+    let condition = {_id: updatedCard._id};
+
+    delete updatedCard._id;
+
+    Cards.update(condition, updatedCard, (err, data) => {
         if (err) {
             respond(res, 404, err);
         } else {

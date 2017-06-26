@@ -1,7 +1,7 @@
 import { LIST_ADD, LIST_GET, LIST_UPDATE, LIST_DELETE, LIST_SELECT } from '../actions/types';
 
 
-const INITIAL_STATE = { list: []}
+const INITIAL_STATE = { list: [], dragTarget: '' }
 
 export default function (state = INITIAL_STATE, action) {
     let newState = {};
@@ -9,7 +9,10 @@ export default function (state = INITIAL_STATE, action) {
         case LIST_GET:
             return Object.assign({}, state, { list: action.lists });
         case LIST_ADD:
-            newState = Object.assign({}, state, { list: [ ...state.list, action.list ] });
+            newState = Object.assign({}, state, { list: [...state.list, action.list] });
+            return newState;
+        case LIST_SELECT: //Drag Target
+            newState = Object.assign({}, state, { dragTarget: action.list });
             return newState;
     }
 

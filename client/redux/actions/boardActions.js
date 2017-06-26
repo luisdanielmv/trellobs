@@ -1,18 +1,15 @@
 import { BOARD_ADD, BOARD_GET, BOARD_UPDATE, BOARD_DELETE, BOARD_SELECT } from '../actions/types';
+import { getAxiosInstance } from '../config';
 
 import store from '../store';
 
 import axios from 'axios';
 
-export function boardRequest(token) {
-    let dispatch = store.dispatch;
-    var instance = axios.create({
-        baseURL: 'http://localhost:7777/api',
-        headers: { 'Authorization': localStorage.getItem('jwt') }
-    });
+export function boardRequest() {
+    const dispatch = store.dispatch;
+    const instance = getAxiosInstance();
 
-    const self = this;
-    return (dispatch) => {
+    return () => {
         return instance.get(`/boards`)
             .then((response) => {
                 dispatch({
@@ -24,17 +21,12 @@ export function boardRequest(token) {
     }
 }
 
-export function boardAdd(token, newBoard) {
-    console.log(newBoard);
-    let dispatch = store.dispatch;
-    var instance = axios.create({
-        baseURL: 'http://localhost:7777/api',
-        headers: { 'Authorization': localStorage.getItem('jwt') }
-    });
+export function boardAdd(newBoard) {
+    const dispatch = store.dispatch;
+    const instance = getAxiosInstance();
 
-    const self = this;
-    return (dispatch) => {
-        return instance.post('/boards', {newBoard})
+    return () => {
+        return instance.post('/boards', { newBoard })
             .then((response) => {
                 dispatch({
                     type: BOARD_ADD,
@@ -42,7 +34,7 @@ export function boardAdd(token, newBoard) {
                 });
             })
             .catch((err) => console.log(err));
-        }
+    }
 }
 
 export function boardSelect(board) {

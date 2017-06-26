@@ -1,13 +1,15 @@
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../actions/types';
 
+import { getAxiosInstance } from '../config';
+
 import store from '../store';
 
-import axios from 'axios';
-
 export function loginRequest(userData) {
-    let dispatch = store.dispatch;
-    return (dispatch) => {
-        return axios.post(`http://localhost:7777/api/auth`, userData)
+    const dispatch = store.dispatch;
+    const instance = getAxiosInstance();
+
+    return () => {
+        return instance.post(`/auth`, userData)
             .then((response) => {
                 localStorage.setItem('jwt', response.data.token);
                 localStorage.setItem('user', JSON.stringify(response.data.user));

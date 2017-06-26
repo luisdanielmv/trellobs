@@ -12,7 +12,7 @@ class Board extends Component {
     }
 
     render() {
-        let { activeBoard, addList, lists, listFormVisible, newList, handleNewListNameChange, hideNewListForm, showNewListForm, user } = this.props;
+        let { activeBoard, addList, lists, listFormVisible, modalVisible, newList, handleCardClick, handleNewListNameChange, hideNewListForm, showNewListForm, user } = this.props;
         return (
             <div className="board__wrapper">
                 <header className='board__header'>
@@ -26,7 +26,12 @@ class Board extends Component {
                     <div className="board__list-holder">
                         {
                             lists.map((list) => {
-                                return (<ListContainer key={list.name} list={list} user={user} />)
+                                return (<ListContainer 
+                                    key={list.name} 
+                                    list={list} 
+                                    user={user} 
+                                    handleCardClick={handleCardClick}
+                                />)
                             })
                         }
                         <div className="list board__add-list">

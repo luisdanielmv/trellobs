@@ -1,0 +1,74 @@
+.cardModal {
+    align-items: center;
+    background-color: rgba(0,0,0, 0.50);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    z-index: 1000;
+
+    .container {
+        width: 100%;
+    }
+
+    .cardModal__wrapper {
+        background-color: #e6e6e6;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        height: 90vh;
+        justify-content: flex-start;
+        padding: 1.25rem;
+    }
+
+    .cardModal__header {
+        align-items: center;
+        display: flex;
+        justify-content: flex-end;
+        .cardModal__btn {
+            height: 2rem;
+            width: 2rem;
+            span {
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .cardModal__main {
+        margin-top: 1.25rem;
+
+        textarea.form-control {
+            resize: none;
+        }
+    }
+
+    .cardModal__btn {
+        align-items: center;
+        background-color: #b1b7c4;
+        border: none;
+        border-radius: 0.5rem;
+        display: flex;
+        height: 2rem;
+        justify-content: center;
+        padding: 0;
+        outline: none;
+        width: 100%;
+
+        span {
+            color: #3f3f3f;
+            font-size: 1rem;
+        }
+    }
+
+    .cardModal__btn:hover {
+        span {
+            color: #FFFFFF;
+            text-decoration: underline;
+        }
+        background-color: #4e88ff;
+    }
+}
