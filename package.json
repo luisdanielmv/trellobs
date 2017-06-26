@@ -9,9 +9,9 @@
   "main": "index.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node_modules/.bin/webpack -p --progress",
-    "dev": "webpack-dev-server",
+    "//dev": "webpack-dev-server",
     "docs": "raml2html docs/api.raml > docs/api.html",
-    "node": "node ./api/start.js",
+    "//node": "node ./api/start.js",
     "nodemon": "nodemon ./api/start.js",
     "start": "npm run build",
     "//": "concurrently \"npm run node\" \"npm run build\""
