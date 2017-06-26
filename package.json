@@ -2,6 +2,9 @@
   "name": "trellobs",
   "version": "1.0.0",
   "description": "Trello Clone React",
+  "engines": {
+    "node": "6.9.4"
+  },
   "main": "index.js",
   "scripts": {
     "build": "webpack",
