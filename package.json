@@ -8,14 +8,12 @@
   },
   "main": "index.js",
   "scripts": {
-    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack -p --progress --bail",
+    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack -p --progress",
     "dev": "webpack-dev-server",
     "docs": "raml2html docs/api.raml > docs/api.html",
-    "nodemon": "nodemon ./api/start.js",
     "node": "node ./api/start.js",
+    "nodemon": "nodemon ./api/start.js",
     "start": "npm run build",
-    "//postinstall": "npm run heroku",
-    "//heroku": "cross-env NODE_ENV=production node_modules/.bin/webpack --color -p",
     "//": "concurrently \"npm run node\" \"npm run build\""
   },
   "repository": {
@@ -62,9 +60,6 @@
     "mongoose": "^4.10.5",
     "morgan": "^1.8.2",
     "node-sass": "^4.5.3",
-    "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1",
-    "passport-local": "^1.0.0",
     "react": "^15.5.4",
     "react-dnd": "^2.4.0",
     "react-dnd-html5-backend": "^2.4.1",
